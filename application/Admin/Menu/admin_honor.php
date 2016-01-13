@@ -1,0 +1,40 @@
+<?php
+return array (
+  'app' => 'Admin',
+  'model' => 'Honor',
+  'action' => 'default',
+  'data' => '',
+  'type' => '0',
+  'status' => '1',
+  'name' => '荣誉资质',
+  'icon' => '',
+  'remark' => '',
+  'listorder' => '0',
+  'children' => 
+  array (
+    array (
+      'app' => 'Admin',
+      'model' => 'Honor',
+      'action' => 'index',
+      'data' => '',
+      'type' => '1',
+      'status' => '1',
+      'name' => '荣誉资质管理',
+      'icon' => '',
+      'remark' => '',
+      'listorder' => '0',
+    ),
+    array (
+      'app' => 'Admin',
+      'model' => 'Honorcat',
+      'action' => 'index',
+      'data' => '',
+      'type' => '1',
+      'status' => '1',
+      'name' => '荣誉资质分类',
+      'icon' => '',
+      'remark' => '',
+      'listorder' => '0',
+    ),
+  ),
+);

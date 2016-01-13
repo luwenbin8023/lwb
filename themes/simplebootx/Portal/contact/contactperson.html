@@ -1,0 +1,30 @@
+<tc_include file="Public:head" />
+	<!-- 图片轮播 -->
+<div class="sub-banner solution-banner" id="banner" style="background:{$banner['slide_des']} ">
+	<a <if condition="$banner['slide_url']"> href="{$banner['slide_url']}" target="_blank" <else />href="javascript:void(0)" </if> style="background:url('{$banner['slide_pic']}') center top  no-repeat"></a></div>
+	<main>
+		<!-- loc -->
+		<div class="loc">
+			<section class="w1140">当前位置：<a href="/">首页 </a>><a href="{:U('Contact/introduction')}"> 关于纳网</a>
+			</section>
+		</div>
+		<!-- mainbody -->		
+		<div class="w1140 clearfix pro-cont">
+			<div class="fl pro-cont-left contact-cont-left">
+				<header class="pro-tabs-tit">关于纳网</header>
+				<ul class="contact-tabs-nav">
+                    <li ><a href="{:U('contact/introduction')}"><i class="contact-icons contact-icon01"></i>公司简介<b class="arrow-red"></b></a></li>
+                    <li><a href="{:U('contact/honor')} "><i class="contact-icons contact-icon02"></i>荣誉资质<b class="arrow-red"></b></a></li>
+                    <li><a href="{:U('contact/newlist')}"><i class="contact-icons contact-icon03"></i>纳网动态<b class="arrow-red"></b></a></li>
+                    <li><a href="{:U('contact/customercase')}"><i class="contact-icons contact-icon04"></i>合作伙伴<b class="arrow-red"></b></a></li>
+                    <li class="on"><a href="{:U('contact/contactperson')}"><i class="contact-icons contact-icon05"></i>人才招聘<b class="arrow-red"></b></a></li>
+                    <li><a href="{:U('contact/contact')}"><i class="contact-icons contact-icon06"></i>联系我们<b class="arrow-red"></b></a></li>
+				</ul>
+			</div>
+			<section class="fr contact-cont-right about-intro about-person">
+                {$data.content}
+			</section>
+		</div>
+			 
+	</main>
+<tc_include file="Public:footer"/>

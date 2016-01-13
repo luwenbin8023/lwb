@@ -1,0 +1,34 @@
+<tc_include file="Public:head" />
+	<div class="sub-banner solution-banner" id="banner" style="background:{$banner['slide_des']} ">
+		<a <if condition="$banner['slide_url']"> href="{$banner['slide_url']}" target="_blank" <else />href="javascript:void(0)" </if> style="background:url('{$banner['slide_pic']}') center top  no-repeat"></a>
+	</div>
+		<main>
+		<!-- loc -->
+		<div class="loc">
+			<section class="w1140">当前位置：<a href="/">首页 </a>><a href="{:U('posts/scheme')}"> 解决方案</a> > <a href="javascript:void(0);">产品概述</a>
+			</section>
+		</div>
+		<!-- mainbody -->
+		<div class="sub-main g-pb40">
+			<div class="w1020">
+				<header><h2 class="sub-tit">产品概述</h2></header>
+				<ul class="solu-list">
+
+				<foreach name="scheme" item="vo">
+					<php>$smeta=json_decode($vo['smeta'],true);</php>
+					<li class="clearfix">
+						<i class="solu-icons01 fl" style="background: url(/data/upload/{$smeta['thumb']}) no-repeat center center;height: 100%;width: 285px;"></i>
+						<dl class="fl">
+							<dt>{$vo.post_title}</dt>
+							<dd>{$vo.post_subtitle_describe}</dd>
+							<a href="{:U('posts/schemeInfo')}#solu-cont{$vo.id}" class="red-btn solu-btn">了解详情</a>
+						</dl>
+					</li>
+				</foreach>
+
+				</ul>
+			</div>
+			
+		</div>		
+	</main>
+<tc_include file="Public:footer"/>

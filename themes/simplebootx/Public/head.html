@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>{$site_seo_title} {$site_name}</title>
+        <meta name="keywords" content="{$site_seo_keywords}" />
+        <meta name="description" content="{$site_seo_description}">
+
+        <link rel="stylesheet" href="__TMPL__Public/css/reset.css">
+        <link rel="stylesheet" href="__TMPL__Public/css/global.css">
+        <link rel="stylesheet" href="__TMPL__Public/css/common.css">
+        <link rel="stylesheet" href="__TMPL__Public/css/main.css">
+        <script type="text/javascript" src="__TMPL__Public/js/jquery-1.9.1.min.js"></script>
+        <!--[if lt IE 9]>
+        <script type="text/javascript" src="__TMPL__Public/js/html5shiv.js"></script>
+        <![endif]-->
+        <style>
+            body{min-width: 1400px;}
+        </style>
+    </head>
+    <body>
+        <header>
+            <section class="topbar">
+                <div class="w1020">
+                    <span class="fl">您好，欢迎来到纳网!</span>
+                    <span class="fr"><i class="icons tel-icon"></i><span class="fl">服务热线&nbsp;{$site_service_hotline}</span></span>
+                </div>
+            </section>
+            <div class="w1020 clearfix">
+                <h1 id="logo" class="fl"><a href="/"><img src="__TMPL__Public/images/logo.jpg" alt="纳网科技"></a></h1>
+                <nav class="fr" id="menu">
+                    <a href="/" <if condition="$CUR_CONTROLLER eq index">class="on"</if>>首页</a>|<a href="{:U('Posts/scheme')}" <if condition="$CUR_CONTROLLER eq posts">class="on"</if>>解决方案</a>|<a href="{:U('Product/index')}" <if condition="$CUR_CONTROLLER eq product">class="on"</if>>产品介绍</a>|<a href="{:U('Agent/index')}" <if condition="$CUR_CONTROLLER eq agent">class="on"</if>>成为代理</a>|<a href="{:U('Contact/introduction')}" <if condition="$CUR_CONTROLLER eq contact">class="on"</if>>关于纳网</a>
+                </nav>
+            </div>
+        </header>

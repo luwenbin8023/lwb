@@ -1,0 +1,90 @@
+<tc_include file="Public:head" />
+<div class="banner">
+	<div class="bd">
+		<ul>
+			<foreach name="banner" item="vo">
+				<li style="background:{$vo.slide_des}"><a <if condition="$vo['slide_url']"> href="{$vo.slide_url}" target="_blank" <else />href="javascript:void(0)" </if> style="background:url('{$vo.slide_pic}') center top  no-repeat"></a></li>
+			</foreach>
+		</ul>
+	</div>
+	<div class="hd">
+		<ul>
+		</ul>
+	</div>
+</div>
+<div class="main g-pb40">
+	<div class="main-alt">
+		<h1>纳，就出发吧！</h1>
+		<p>纳网科技专为互联网创业者和转型者量身打造的互联网<br/>产品解决方案，一键选择，启航全程无忧</p>
+	</div>
+	<div class="naGo">
+		<div class="naGo-main clearfix bd">
+			<ul>
+				<foreach name="scheme" item="vo">
+					<php>$smeta=json_decode($vo['smeta'],true);</php>
+					<li class="j-goItem">
+						<div class="naGo-item">
+							<h1>{$vo.post_title}</h1>
+							<span>{$vo.post_title_describe}</span>
+							<div class="common-img"><img src="/data/upload/{$smeta['subthumb']}" alt=""><i style="display:inline-block;height:100%;vertical-align:middle"></i>
+							</div>
+							<div class="light-img"><img src="/data/upload/{$smeta['thumb']}" alt=""><i style="display:inline-block;height:100%;vertical-align:middle"></i>
+							</div>
+							<h2>{$vo.post_subtitle}</h2>
+							<p>{$vo.post_subtitle_describe}</p>
+						</div>
+						<a href="{:U('posts/schemeInfo')}#solu-cont{$vo.id}"><div class="naGo-title">{$vo.post_excerpt}</div></a>
+						<div class="naGo-tap"></div>
+					</li>
+				</foreach>
+			</ul>
+		</div>
+		<a class="prev" href="javascript:void(0)"></a>
+		<a class="next" href="javascript:void(0)"></a>
+	</div>
+	<div class="main-alt">
+		<h1>纳网的优势</h1>
+		<p>厦门纳网科技有限公司是获得CNNIC认证（中国互联网信息中心）<br/>和ICANN认证（互联网域名体系最高管理机构）双认证的顶级注册商</p>
+	</div>
+	<div class="naGood">
+		<ul class="clearfix">
+			<foreach name="advantage" key="k" item="vo">
+				<li>
+					<div class="item-ico ico_0{$k+1}"></div>
+					<h1>{$vo.title}</h1>
+					<p>{$vo.content}</p>
+				</li>
+			</foreach>
+		</ul>
+	</div>
+	<div class="main-alt">
+		<h1>合作伙伴</h1>
+		<p> 10余年的时间让我们成长为蒸蒸日上的互联网领先企业。10余年的<br/>辛苦耕耘让我们在客户群中赢得了良好的口碑</p>
+	</div>
+	<div class="naPartner">
+		<div class="clearfix bd">
+			<ul>
+				<foreach name="links" item="vo">
+					<li>
+						<div class="partner-logo">
+							<a >
+								<img src="{$vo.link_image}" alt="{$vo.link_name}">
+							</a>
+						</div>
+						<p>{$vo.link_name}</p>
+					</li>
+				</foreach>
+			</ul>
+		</div>
+		<div class="hd">
+			<ul>
+				<li></li>
+				<li></li>
+			</ul>
+		</div>
+		<div class="prev"></div>
+		<div class="next"></div>
+	</div>
+
+</div>
+<tc_include file="Public:footer"/>

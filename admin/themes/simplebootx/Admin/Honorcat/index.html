@@ -1,0 +1,46 @@
+<admintpl file="header" />
+</head>
+<body>
+	<div class="wrap">
+		<ul class="nav nav-tabs">
+			<li class="active"><a href="{:U('honorcat/index')}">荣誉资质分类</a></li>
+			<li><a href="{:U('honorcat/add')}">添加分类</a></li>
+		</ul>
+		<form method="post" class="js-ajax-form" action="{:U('term/listorders')}">
+			<table class="table table-hover table-bordered">
+				<thead>
+					<tr>
+						<th width="50">ID</th>
+						<th>分类名称</th>
+						<th>分类标示</th>
+						<th>描述</th>
+						<th width="120">操作</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>0</td>
+						<td>默认分类</td>
+						<td></td>
+						<td>默认分类</td>
+						<td>不允许修改</td>
+					</tr>
+					<foreach name="slidecats" item="vo">
+					<tr>
+						<td>{$vo.cid}</td>
+						<td>{$vo.cat_name}</td>
+						<td>{$vo.cat_idname}</td>
+						<td>{$vo.cat_remark}</td>
+						<td>
+							<a href="{:U('honorcat/edit',array('id'=>$vo['cid']))}">{:L('EDIT')}</a>|
+							<a href="{:U('honorcat/delete',array('id'=>$vo['cid']))}" class="js-ajax-delete">{:L('DELETE')}</a>
+						</td>
+					</tr>
+					</foreach>
+				</tbody>
+			</table>
+		</form>
+	</div>
+	<script src="__PUBLIC__/js/common.js"></script>
+</body>
+</html>

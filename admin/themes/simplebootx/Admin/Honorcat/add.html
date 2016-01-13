@@ -1,0 +1,47 @@
+<admintpl file="header" />
+</head>
+<body>
+	<div class="wrap">
+		<ul class="nav nav-tabs">
+			<li><a href="{:U('honorcat/index')}">荣誉资质分类</a></li>
+			<li class="active"><a href="{:U('honorcat/add')}">添加分类</a></li>
+		</ul>
+		<form method="post" class="form-horizontal js-ajax-form" action="{:U('honorcat/add_post')}">
+			<fieldset>
+				<div class="control-group">
+					<label class="control-label">分类名称</label>
+					<div class="controls">
+						<input type="text" name="cat_name">
+						<span class="form-required">*</span>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">分类标示</label>
+					<div class="controls">
+						<input type="text" name="cat_idname">
+						<span class="form-required">*</span>
+						<span style="margin-left: 15px;">英文字母,数字或下划线(“_”)</span>
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">排序</label>
+					<div class="controls">
+						<input type="text" name="listorder">
+					</div>
+				</div>
+				<div class="control-group">
+					<label class="control-label">描述</label>
+					<div class="controls">
+						<textarea name="cat_remark" rows="5" cols="57">{$remark}</textarea>
+					</div>
+				</div>
+			</fieldset>
+			<div class="form-actions">
+				<button class="btn btn-primary js-ajax-submit" type="submit">{:L('ADD')}</button>
+				<a class="btn" href="{:U('honorcat/index')}">{:L('BACK')}</a>
+			</div>
+		</form>
+	</div>
+	<script src="__PUBLIC__/js/common.js"></script>
+</body>
+</html>

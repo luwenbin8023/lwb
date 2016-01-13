@@ -1,0 +1,64 @@
+<tc_include file="Public:head" />
+<!-- 图片轮播 -->
+<div id="slideBox" class="sub-banner slide-banner banner" id="banner">
+    <div class="hd">
+        <ul>
+            <foreach name="banner" item="vo">
+                <li></li>
+            </foreach>
+        </ul>
+    </div>
+    <div class="bd">
+        <foreach name="banner" item="vo">
+            <li style="background:{$vo.slide_des}"><a href="<if condition="$vo['slide_url']"> href="{$vo.slide_url}" target="_blank" <else />href="javascript:void(0)" </if> style="background:url('{$vo.slide_pic}') center top  no-repeat" ></a></li>
+        </foreach>
+    </div>
+</div>
+<main class="g-pb40">
+    <!-- loc -->
+    <div class="loc">
+        <section class="w1140">当前位置：<a href="/">首页 </a>><a href="{:U('product/index')}"> 产品介绍</a>
+        </section>
+    </div>
+    <!-- mainbody -->
+    <div class="w1140 clearfix pro-cont">
+        <div class="fl pro-cont-left">
+            <header class="pro-tabs-tit">产品列表</header>
+            <ul class="pro-tabs-nav">
+                <foreach name="product" item="vo">
+                    <if condition="$vo.id eq $selectID ">
+                        <li class='on'><a href="javascript:void(0)">{$vo.post_title}<b class="caret-red"></b></a></li>
+                        <else />
+                        <li ><a href="javascript:void(0)">{$vo.post_title}<b class="caret-red"></b></a></li>
+                    </if>
+                </foreach>
+            </ul>
+        </div>
+        <div class="fr pro-cont-right">
+            <foreach name="product" item="vo">
+                <div class="pro-tabs-cont">
+                {$vo.post_content}
+                </div>
+            </foreach>
+        </div>
+    </div>
+
+</main>
+<!--返回顶部-->
+<div class="back-top j-backTop">
+</div>
+<!--返回顶部end-->
+<script type="text/javascript" src="__TMPL__Public/js/jquery.SuperSlide.2.1.1.js"></script>
+<script type="text/javascript" src="__TMPL__Public/js/common.js"></script>
+<script type="text/javascript" src="__TMPL__Public/js/main.js"></script>
+<script type="text/javascript">
+    $(".pro-cont").slide({
+        titCell:"ul.pro-tabs-nav li",
+        mainCell:".pro-cont-right",
+        trigger:"click"
+    });
+</script>
+
+
+
+<tc_include file="Public:footer"/>

@@ -1,0 +1,49 @@
+<admintpl file="header" />
+</head>
+<body>
+	<div class="wrap js-check-wrap">
+		<ul class="nav nav-tabs">
+			<li class="active"><a href="javascript:;">{:L('ADMIN_CUSTOMERSERVICE_INDEX')}</a></li>
+			<li><a href="{:U('Customerservice/add')}" target="_self">{:L('ADMIN_CUSTOMERSERVICE_ADD')}</a></li>
+		</ul>
+		<form class="js-ajax-form" action="" method="post">
+			<table class="table table-hover table-bordered table-list">
+				<thead>
+					<tr>
+						<th width="15">ID</th>
+						<th>{:L('NAME')}</th>
+						<th >{:L('CUSTOMERSERVICE_TYPE')}</th>
+						<th >{:L('ACCOUNT')}</th>
+						<th >{:L('LISTORDER')}</th>
+						<th >{:L('ACTIONS')}</th>
+					</tr>
+				</thead>
+				<foreach name="customerService" item="vo">
+				<tr>
+					<td><span>{$vo['id']}</span></td>
+					<td><span>{$vo['name']}</span></td>
+					<td><span> <if condition="$vo['type'] eq 1">售前客服<else />售后客服</if></span></td>
+					<td><span>{$vo['account']}</span></td>
+					<td><span>{$vo['listorder']}</span></td>
+					<td>
+						<a href="{:U('Customerservice/edit',array('id'=>$vo['id']))}">{:L('EDIT')}</a> |
+						<a href="{:U('Customerservice/delete',array('id'=>$vo['id']))}" class="js-ajax-delete">{:L('DELETE')}</a></td>
+				</tr>
+				</foreach>
+			</table>
+		</form>
+	</div>
+	<script src="__PUBLIC__/js/common.js"></script>
+	<script>
+		function refersh_window() {
+			var refersh_time = getCookie('refersh_time');
+			if (refersh_time == 1) {
+				window.location = "{:U('Customerservice/index',$formget)}";
+			}
+		}
+		setInterval(function() {
+			refersh_window();
+		}, 2000);
+	</script>
+</body>
+</html>

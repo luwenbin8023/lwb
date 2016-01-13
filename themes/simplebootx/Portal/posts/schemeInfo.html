@@ -1,0 +1,74 @@
+<tc_include file="Public:head" />
+<div class="sub-banner solution-banner" id="banner" style="background:{$banner['slide_des']} ">
+	<a <if condition="$banner['slide_url']"> href="{$banner['slide_url']}" target="_blank" <else />href="javascript:void(0)" </if> style="background:url('{$banner['slide_pic']}') center top  no-repeat"></a>
+</div>
+<main>
+	<!-- solu-anchor-btns -->
+	<div class="anchor-btns solu-anchor-btns picScroll-left">
+		<div class="anchor-mainbody w1140">
+			<div class="bd">
+				<nav>
+					<foreach name="scheme" item="vo" key="k">
+						<php>$smeta=json_decode($vo['smeta'],true);</php>
+						<a href="#solu-cont{$vo.id}">
+							<i class="anchor-btn-icon fl"><img src="/data/upload/{$smeta['icon']}" alt=""><i style="display:inline-block;height:100%;vertical-align:middle"></i></i>
+							<dl class="fl">
+								<dt>{$vo.post_title}</dt>
+								<dd>{$vo.post_title_describe}</dd>
+							</dl>
+						</a>
+					</foreach>
+				</nav>
+			</div>
+			<a class="prev" href="javascript:void(0)"></a>
+			<a class="next" href="javascript:void(0)"></a>
+		</div>
+	</div>
+	<div style="height:82px;"></div>
+	<!-- loc -->
+	<div class="loc white-loc">
+		<section class="w1140"><strong>当前位置：</strong><a href="/">首页 </a>><a href="{:U('posts/scheme')}"> 解决方案</a> > <span class="cur">产品概述</span>
+		</section>
+	</div>
+	<!-- mainbody -->
+	<div class="solution-cont g-pb40">
+		<div class="w1140">
+			<ul class="solu-cont-list">
+
+				<foreach name="scheme" item="vo" key="k">
+					<php>$smeta=json_decode($vo['smeta'],true);</php>
+					<li class="clearfix solu-cont0{$k+1}" id="solu-cont{$vo.id}">
+						<if condition="$k%2 eq 0">
+							<i class="solu-cont-icon fl"><img src="{$smeta['image']}" alt=""></i>
+						</if>
+						<dl class="fl">
+							<dt>{$vo.post_title}</dt>
+							<h3>{$vo.post_subtitle}</h3>
+							{$vo.post_content}
+							<a <if condition="$vo.purchase_url">href="{$vo.purchase_url}" target="_blank"</if> class="red-btn solu-cont-btn">立即购买</a>
+						</dl>
+						<if condition="$k%2 != 0">
+							<i class="solu-cont-icon fr g-ar"><img src="{$smeta['image']}" alt=""></i>
+						</if>
+					</li>
+
+				</foreach>
+
+			</ul>
+		</div>
+	</div>
+</main>
+<!--锚点跳转定位-->
+<script>
+	window.onload=anchorFun;
+	function anchorFun(){
+		var target=window.location.href,
+				b=target.indexOf("#"),
+				anchorTar=target.substr(b);
+		var top=$(anchorTar).offset().top-84;
+		if(top>0){
+			$('html,body').animate({scrollTop:top}, 1000);
+		}
+	}
+</script>
+<tc_include file="Public:footer"/>

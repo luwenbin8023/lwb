@@ -1,0 +1,107 @@
+<admintpl file="header" />
+</head>
+<body>
+	<div class="wrap js-check-wrap">
+		<ul class="nav nav-tabs">
+			<li class="active"><a href="{:U('honor/index')}">荣誉资质管理</a></li>
+			<li><a href="{:U('honor/add')}">添加荣誉资质</a></li>
+		</ul>
+		<form class="well form-search" method="post" id="cid-form">
+			<select class="select_2" name="cid" style="width: 100px;" id="selected-cid">
+				<option value=''>所有</option>
+				<foreach name="categorys" item="vo">
+				<php>$cid_select=$vo['cid']===$slide_cid?"selected":"";</php>
+				<option value="{$vo.cid}"{$cid_select}>{$vo.cat_name}</option>
+				</foreach>
+			</select>
+		</form>
+		<form class="js-ajax-form" method="post">
+			<div class="table-actions">
+				<button class="btn btn-primary btn-small js-ajax-submit" type="submit" data-action="{:U('honor/listorders')}">{:L('SORT')}</button>
+				<button class="btn btn-primary btn-small js-ajax-submit" type="submit" data-action="{:U('honor/toggle',array('display'=>1))}" data-subcheck="true">{:L('DISPLAY')}</button>
+				<button class="btn btn-primary btn-small js-ajax-submit" type="submit" data-action="{:U('honor/toggle',array('hide'=>1))}" data-subcheck="true">{:L('HIDDEN')}</button>
+				<button class="btn btn-primary btn-small js-ajax-submit" type="submit" data-action="{:U('honor/delete')}" data-subcheck="true">{:L('DELETE')}</button>
+			</div>
+			<php> $status=array("1"=>L('DISPLAY'),"0"=>L('HIDDEN')); </php>
+			<table class="table table-hover table-bordered table-list">
+				<thead>
+					<tr>
+						<th width="15"><label><input type="checkbox" class="js-check-all" data-direction="x" data-checklist="js-check-x"></label></th>
+						<th width="50">{:L('SORT')}</th>
+						<th width="50">ID</th>
+						<th width="200">标题</th>
+						<th width="200">描述</th>
+                        <th width="100">内容</th>
+						<th width="50">图片</th>
+						<th width="50">状态</th>
+						<th width="100">操作</th>
+					</tr>
+				</thead>
+				<foreach name="slides" item="vo">
+				<tr>
+					<td><input type="checkbox" class="js-check" data-yid="js-check-y" data-xid="js-check-x" name="ids[]" value="{$vo.slide_id}"></td>
+					<td><input name='listorders[{$vo.slide_id}]' class="input input-order mr5" type='text' size='3' value='{$vo.listorder}'></td>
+					<td>{$vo.slide_id}</td>
+					<td>{$vo.slide_name}</td>
+					<td>{$slide_des = mb_substr($vo['slide_des'], 0, 48,'utf-8')}</td>
+                    <td>{$vo.slide_content}</td>
+					<td>
+						<if condition="!empty($vo['slide_pic'])">
+							<a href="{:sp_get_asset_upload_path($vo['slide_pic'])}" target="_blank">查看</a>
+						</if>
+					</td>
+					<td>{$status[$vo['slide_status']]}</td>
+					<td>
+						<a href="{:U('honor/edit',array('id'=>$vo['slide_id']))}">{:L('EDIT')}</a>
+						<a href="{:U('honor/delete',array('id'=>$vo['slide_id']))}" class="js-ajax-delete">{:L('DELETE')}</a>
+						<if condition="empty($vo['slide_status']) eq 1">
+							<a href="{:U('honor/cancelban',array('id'=>$vo['slide_id']))}" class="js-ajax-dialog-btn" data-msg="确定显示荣誉资质吗？">{:L('DISPLAY')}</a>
+						<else /> 
+							<a href="{:U('honor/ban',array('id'=>$vo['slide_id']))}" class="js-ajax-dialog-btn" data-msg="确定隐藏此荣誉资质吗？">{:L('HIDE')}</a>
+						</if>
+					</td>
+				</tr>
+				</foreach>
+				<tfoot>
+					<tr>
+						<th width="15"><label><input type="checkbox" class="js-check-all" data-direction="x" data-checklist="js-check-x"></label></th>
+                        <th width="50">{:L('SORT')}</th>
+                        <th width="50">ID</th>
+                        <th width="200">标题</th>
+                        <th width="200">描述</th>
+                        <th width="100">内容</th>
+                        <th width="50">图片</th>
+                        <th width="50">状态</th>
+                        <th width="100">操作</th>
+					</tr>
+				</tfoot>
+			</table>
+			<div class="table-actions">
+				<button class="btn btn-primary btn-small js-ajax-submit" type="submit" data-action="{:U('honor/listorders')}">{:L('SORT')}</button>
+				<button class="btn btn-primary btn-small js-ajax-submit" type="submit" data-action="{:U('honor/toggle',array('display'=>1))}" data-subcheck="true">{:L('DISPLAY')}</button>
+				<button class="btn btn-primary btn-small js-ajax-submit" type="submit" data-action="{:U('honor/toggle',array('hide'=>1))}" data-subcheck="true">{:L('HIDDEN')}</button>
+				<button class="btn btn-primary btn-small js-ajax-submit" type="submit" data-action="{:U('honor/delete')}" data-subcheck="true">{:L('DELETE')}</button>
+			</div>
+		</form>
+        <div class="pagination">{$page}</div>
+	</div>
+	<script src="__PUBLIC__/js/common.js"></script>
+	<script>
+		setCookie('refersh_time', 0);
+		function refersh_window() {
+			var refersh_time = getCookie('refersh_time');
+			if (refersh_time == 1) {
+				window.location.reload();
+			}
+		}
+		setInterval(function() {
+			refersh_window()
+		}, 3000);
+		$(function() {
+			$("#selected-cid").change(function() {
+				$("#cid-form").submit();
+			});
+		});
+	</script>
+</body>
+</html>

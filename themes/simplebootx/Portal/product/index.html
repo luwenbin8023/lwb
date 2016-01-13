@@ -1,0 +1,49 @@
+<tc_include file="Public:head" />
+<!-- 图片轮播 -->
+<div id="slideBox" class="sub-banner slide-banner banner" id="banner">
+<div class="hd">
+	<ul>
+	</ul>
+</div>
+<div class="bd">
+	<ul>
+		<foreach name="banner" item="vo">
+			<li style="background:{$vo.slide_des}"><a <if condition="$vo['slide_url']"> href="{$vo.slide_url}" target="_blank" <else />href="javascript:void(0)" </if> style="background:url('{$vo.slide_pic}') center top  no-repeat"></a></li>
+		</foreach>
+	</ul>
+</div>
+</div>
+<main>
+		<!-- loc -->
+		<div class="loc">
+			<section class="w1140">当前位置：<a href="/">首页 </a>><a href="{:U('product/index')}"> 产品介绍</a>
+			</section>
+		</div>
+		<!-- mainbody -->
+		<div class="sub-main g-pb40">
+			<div class="w1020">
+				<header><h2 class="sub-tit">产品介绍</h2></header>
+				<ul class="prod-list clearfix">
+                    <foreach name="product" item="vo" >
+                    <li>
+                        <php>$smeta=json_decode($vo['smeta'],true);</php>
+						<i class="prod-icons default-prod-icons"><img src="/data/upload/{$smeta['thumb']}" alt=""></i>
+						<i class="prod-icons on-prod-icons"><img src="/data/upload/{$smeta['thumb']}" alt=""></i>
+						<dl>
+							<dt>{$vo.post_title}</dt>
+							<dd>{$vo.post_title_describe}</dd>
+							<a href="{:U('product/productInfo')}&id={$vo.id}" class="prod-btn">了解详情</a>
+						</dl>
+					</li>
+                    </foreach>
+				</ul>
+			</div>
+		</div>
+	</main>
+	<script type="text/javascript">
+	$(".prod-list li").hover(function (){
+		$(this).addClass("on").siblings("li").removeClass("on")
+	})
+	</script>
+
+<tc_include file="Public:footer"/>

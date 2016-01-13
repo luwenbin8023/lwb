@@ -1,0 +1,40 @@
+<admintpl file="header" />
+</head>
+<body>
+	<div class="wrap">
+		<ul class="nav nav-tabs">
+			<li class="active"><a href="{:U('news/index')}">动态列表</a></li>
+			<li><a href="{:U('news/active')}">添加动态</a></li>
+		</ul>
+		<form method="post" class="js-ajax-form" action="{:U('term/listorders')}">
+			<table class="table table-hover table-bordered">
+				<thead>
+					<tr>
+						<th width="50">ID</th>
+						<th>标题</th>
+						<th>排序</th>
+						<th>添加时间</th>
+						<th width="120">操作</th>
+					</tr>
+				</thead>
+				<tbody>
+					<foreach name="news" item="vo">
+					<tr>
+						<td>{$vo.news_id}</td>
+						<td>{$vo.news_title}</td>
+						<td>{$vo.news_listorder}</td>
+						<td>{$vo.createtime}</td>
+						<td>
+							<a href="{:U('news/active',array('id'=>$vo['news_id']))}">{:L('EDIT')}</a>|
+							<a href="{:U('news/delete',array('id'=>$vo['news_id']))}" class="js-ajax-delete">{:L('DELETE')}</a>
+						</td>
+					</tr>
+					</foreach>
+				</tbody>
+			</table>
+			<div class="pagination">{$Page}</div>
+		</form>
+	</div>
+	<script src="__PUBLIC__/js/common.js"></script>
+</body>
+</html>
